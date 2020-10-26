@@ -1,0 +1,364 @@
+<header>
+  <div class="curved flex justify-center items-center">
+    <h1 class="text-center text-white font-extrabold">
+      <span class="text-4xl md:text-5xl block">Frutos Secos</span>
+      <span class="md:tracking-wider">Ñam Ñam</span>
+    </h1>
+  </div>
+</header>
+
+<main class="container mx-auto px-4">
+  <section>
+    <div class="text-center my-5 py-5">
+      <h2 class="text-3xl font-bold">
+        Promociones 😉
+      </h2>
+    </div>
+
+    <div
+      class="bg-yellow-200 text-yellow-700 font-bold p-4 mb-5 rounded"
+      role="alert"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span>Aproveche nuestras promociones vigentes hasta el 15-11-2020.</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let promocion of promociones"
+        class="max-w rounded border overflow-hidden shadow-xl mb-5"
+      >
+        <div class="px-6 py-4">
+          <div [class]="promocion.class.titulo">{{ promocion.titulo }}</div>
+          <p class="text-gray-700 text-base mb-3">
+            Esta promoción incluye los siguientes productos:
+          </p>
+          <ul class="text-gray-700 list-disc list-inside">
+            <li *ngFor="let item of promocion.contenido" class="my-1">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="px-6 pt-4 pb-2">
+          <span [class]="promocion.class.precio">$ {{ promocion.precio }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="text-center my-5 py-5">
+      <h2 class="text-3xl font-bold">
+        Nuestros Productos 👇
+      </h2>
+    </div>
+
+    <div
+      class="bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-br-lg rounded-tl-lg mb-5"
+    >
+      <h3 class="text-2xl p-2">
+        Sección <span class="font-bold">Frutos Secos</span>
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let producto of frutosSecos"
+        class="max-w rounded border overflow-hidden shadow-xl mb-5"
+      >
+        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
+          <p class="text-gray-700 text-base mb-3">
+            {{ producto.descripcion }}
+          </p>
+
+          <table class="w-full table-fixed text-gray-700">
+            <thead>
+              <tr>
+                <th class="w-1/2 p-1">Cantidad</th>
+                <th class="w-1/2 p-1">Precio</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let precio of producto.precio">
+                <td class="border p-1">{{ precio.nombre }}</td>
+                <td class="border p-1">$ {{ precio.valor }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
+          <span
+            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
+            >Sin stock</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div
+      class="bg-gradient-to-r from-blue-400 to-indigo-400 text-white rounded-br-lg rounded-tl-lg mb-5"
+    >
+      <h3 class="text-2xl p-2">
+        Sección <span class="font-bold">Cereales</span>
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let producto of cereales"
+        class="max-w rounded border overflow-hidden shadow-xl mb-5"
+      >
+        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
+          <p class="text-gray-700 text-base mb-3">
+            {{ producto.descripcion }}
+          </p>
+
+          <table class="w-full table-fixed text-gray-700">
+            <thead>
+              <tr>
+                <th class="w-1/2 p-1">Cantidad</th>
+                <th class="w-1/2 p-1">Precio</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let precio of producto.precio">
+                <td class="border p-1">{{ precio.nombre }}</td>
+                <td class="border p-1">$ {{ precio.valor }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
+          <span
+            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
+            >Sin stock</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div
+      class="bg-gradient-to-r from-green-400 to-teal-400 text-white rounded-br-lg rounded-tl-lg mb-5"
+    >
+      <h3 class="text-2xl p-2">
+        Sección <span class="font-bold">Dulces</span>
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let producto of dulces"
+        class="max-w rounded border overflow-hidden shadow-xl mb-5"
+      >
+        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
+          <p class="text-gray-700 text-base mb-3">
+            {{ producto.descripcion }}
+          </p>
+
+          <table class="w-full table-fixed text-gray-700">
+            <thead>
+              <tr>
+                <th class="w-1/2 p-1">Cantidad</th>
+                <th class="w-1/2 p-1">Precio</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let precio of producto.precio">
+                <td class="border p-1">{{ precio.nombre }}</td>
+                <td class="border p-1">$ {{ precio.valor }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
+          <span
+            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
+            >Sin stock</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div
+      class="bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-br-lg rounded-tl-lg mb-5"
+    >
+      <h3 class="text-2xl p-2">
+        Sección <span class="font-bold">Semillas</span>
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let producto of semillas"
+        class="max-w rounded border overflow-hidden shadow-xl mb-5"
+      >
+        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
+          <p class="text-gray-700 text-base mb-3">
+            {{ producto.descripcion }}
+          </p>
+
+          <table class="w-full table-fixed text-gray-700">
+            <thead>
+              <tr>
+                <th class="w-1/2 p-1">Cantidad</th>
+                <th class="w-1/2 p-1">Precio</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let precio of producto.precio">
+                <td class="border p-1">{{ precio.nombre }}</td>
+                <td class="border p-1">$ {{ precio.valor }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
+          <span
+            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
+            >Sin stock</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pt-5 text-center text-white">
+  <div class="bg-gray-800 pt-5">
+    <section class="p-5">
+      <h3 class="text-2xl px-2">
+        Descargue el listado de nuestros precios
+      </h3>
+      <p class="text-gray-500">
+        Precios actualizados al: {{ fecha | date : 'dd-MM-yyyy' }}
+      </p>
+
+      <a
+        class="mt-5 bg-orange-400 hover:bg-orange-500 text-gray-900 font-bold py-2 px-4 rounded inline-flex items-center"
+        href="https://bysbit.xyz/pdf/listado-precios.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
+        <svg
+          class="fill-current w-4 h-4 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+        </svg>
+        <span>Descargar listado</span>
+      </a>
+    </section>
+
+    <section class="container mx-auto p-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+        <div
+          class="max-w rounded overflow-hidden mb-5 border border-gray-700 p-3"
+        >
+          <p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+              />
+              <path
+                d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"
+              />
+            </svg>
+            <span>Despacho</span>
+          </p>
+
+          <p class="text-gray-500 mt-2">
+            Realizamos despachos gratuitos a domicilio en zona de Parque San
+            Martín y sus alrededores (consulte su zona).
+          </p>
+        </div>
+
+        <div
+          class="max-w rounded overflow-hidden mb-5 border border-gray-700 p-3"
+        >
+          <p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Formas de pago</span>
+          </p>
+
+          <p class="text-gray-500 mt-2">
+            Puede realizar su pago de 2 formas, al momento de recibir su compra
+            en casa o mediante transferencia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 text-gray-500">
+      &copy; {{ anio }} Sitio desarrollado por
+      <a
+        href="https://bysbit.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-white"
+        >bysbit.com</a
+      >
+      🚀
+    </section>
+  </div>
+</footer>
+
+<div class="btn-wapp">
+  <span id="mensaje" class="text-center">
+    ¡Esperamos su mensaje! 🤗
+  </span>
+  <span>
+    <a href="https://wa.me/541127217244" target="_blank" rel="noopener">
+      <img src="../../../assets/whatsapp.svg" alt="Whatsapp" />
+    </a>
+  </span>
+</div>
