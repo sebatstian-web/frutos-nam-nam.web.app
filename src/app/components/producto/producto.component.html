@@ -1,0 +1,36 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div
+    *ngFor="let producto of productos"
+    class="max-w rounded border overflow-hidden shadow-xl mb-5"
+  >
+    <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
+      <p class="text-gray-700 text-base mb-3">
+        {{ producto.descripcion }}
+      </p>
+
+      <table class="w-full table-fixed text-gray-700">
+        <thead>
+          <tr>
+            <th class="w-1/2 p-1">Cantidad</th>
+            <th class="w-1/2 p-1">Precio</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let precio of producto.precio">
+            <td class="border p-1">{{ precio.nombre }}</td>
+            <td class="border p-1">$ {{ precio.valor }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
+      <span
+        class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
+        >Sin stock 😔</span
+      >
+    </div>
+  </div>
+</div>

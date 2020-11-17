@@ -32,18 +32,20 @@
           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         />
       </svg>
-      <span>Aproveche nuestras promociones vigentes hasta el 15-11-2020.</span>
+      <span>Aproveche nuestras promociones vigentes hasta el 30-11-2020.</span>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
-        *ngFor="let promocion of promociones"
+        *ngFor="let promocion of promociones; let i = index"
         class="max-w rounded border overflow-hidden shadow-xl mb-5"
       >
         <div class="px-6 py-4">
-          <div [class]="promocion.class.titulo">{{ promocion.titulo }}</div>
+          <div [class]="promocion.class.titulo">
+            Promo {{ i + 1 }}
+          </div>
           <p class="text-gray-700 text-base mb-3">
-            Esta promoción incluye los siguientes productos:
+            Esta promoción cuenta con los siguientes productos:
           </p>
           <ul class="text-gray-700 list-disc list-inside">
             <li *ngFor="let item of promocion.contenido" class="my-1">
@@ -52,8 +54,11 @@
           </ul>
         </div>
 
-        <div class="px-6 pt-4 pb-2">
+        <div class="px-6 pt-4 pb-2 text-center">
           <span [class]="promocion.class.precio">$ {{ promocion.precio }}</span>
+          <span [class]="promocion.class.precio"
+            >Incluye un {{ promocion.descuento }} de descuento</span
+          >
         </div>
       </div>
     </div>
@@ -74,42 +79,7 @@
       </h3>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        *ngFor="let producto of frutosSecos"
-        class="max-w rounded border overflow-hidden shadow-xl mb-5"
-      >
-        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
-          <p class="text-gray-700 text-base mb-3">
-            {{ producto.descripcion }}
-          </p>
-
-          <table class="w-full table-fixed text-gray-700">
-            <thead>
-              <tr>
-                <th class="w-1/2 p-1">Cantidad</th>
-                <th class="w-1/2 p-1">Precio</th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr *ngFor="let precio of producto.precio">
-                <td class="border p-1">{{ precio.nombre }}</td>
-                <td class="border p-1">$ {{ precio.valor }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
-          <span
-            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
-            >Sin stock</span
-          >
-        </div>
-      </div>
-    </div>
+    <app-producto [productos]="frutosSecos"></app-producto>
   </section>
 
   <section class="mt-5">
@@ -121,42 +91,7 @@
       </h3>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        *ngFor="let producto of cereales"
-        class="max-w rounded border overflow-hidden shadow-xl mb-5"
-      >
-        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
-          <p class="text-gray-700 text-base mb-3">
-            {{ producto.descripcion }}
-          </p>
-
-          <table class="w-full table-fixed text-gray-700">
-            <thead>
-              <tr>
-                <th class="w-1/2 p-1">Cantidad</th>
-                <th class="w-1/2 p-1">Precio</th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr *ngFor="let precio of producto.precio">
-                <td class="border p-1">{{ precio.nombre }}</td>
-                <td class="border p-1">$ {{ precio.valor }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
-          <span
-            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
-            >Sin stock</span
-          >
-        </div>
-      </div>
-    </div>
+    <app-producto [productos]="cereales"></app-producto>
   </section>
 
   <section class="mt-5">
@@ -168,42 +103,7 @@
       </h3>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        *ngFor="let producto of dulces"
-        class="max-w rounded border overflow-hidden shadow-xl mb-5"
-      >
-        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
-          <p class="text-gray-700 text-base mb-3">
-            {{ producto.descripcion }}
-          </p>
-
-          <table class="w-full table-fixed text-gray-700">
-            <thead>
-              <tr>
-                <th class="w-1/2 p-1">Cantidad</th>
-                <th class="w-1/2 p-1">Precio</th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr *ngFor="let precio of producto.precio">
-                <td class="border p-1">{{ precio.nombre }}</td>
-                <td class="border p-1">$ {{ precio.valor }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
-          <span
-            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
-            >Sin stock</span
-          >
-        </div>
-      </div>
-    </div>
+    <app-producto [productos]="dulces"></app-producto>
   </section>
 
   <section class="mt-5">
@@ -215,42 +115,7 @@
       </h3>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        *ngFor="let producto of semillas"
-        class="max-w rounded border overflow-hidden shadow-xl mb-5"
-      >
-        <img class="w-full" [src]="producto.imagen" [alt]="producto.nombre" />
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">{{ producto.nombre }}</div>
-          <p class="text-gray-700 text-base mb-3">
-            {{ producto.descripcion }}
-          </p>
-
-          <table class="w-full table-fixed text-gray-700">
-            <thead>
-              <tr>
-                <th class="w-1/2 p-1">Cantidad</th>
-                <th class="w-1/2 p-1">Precio</th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr *ngFor="let precio of producto.precio">
-                <td class="border p-1">{{ precio.nombre }}</td>
-                <td class="border p-1">$ {{ precio.valor }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div *ngIf="producto.sinStock" class="px-6 pt-4 pb-2">
-          <span
-            class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
-            >Sin stock</span
-          >
-        </div>
-      </div>
-    </div>
+    <app-producto [productos]="semillas"></app-producto>
   </section>
 </main>
 
